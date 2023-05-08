@@ -7,10 +7,8 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-#COPY ["aks-webapp/aks-webapp.csproj", "aks-webapp/"]
-#RUN dotnet restore "aks-webapp/aks-webapp.csproj"
-COPY *.csproj ./
-RUN dotnet restore
+COPY ["aks-webapp/aks-webapp.csproj", "aks-webapp/"]
+RUN dotnet restore "aks-webapp/aks-webapp.csproj"
 COPY . .
 WORKDIR "/src/aks-webapp"
 RUN dotnet build "aks-webapp.csproj" -c Release -o /app/build
@@ -22,3 +20,4 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "aks-webapp.dll"]
+
