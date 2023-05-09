@@ -9,7 +9,7 @@ EXPOSE 443
 #WORKDIR /src
 #COPY ["aks-webapp/", "aks-webapp/"]
 COPY *.csproj ./
-RUN dotnet restore 
+RUN dotnet restore "aks-webapp.csproj"
 COPY . .
 WORKDIR "/src/aks-webapp"
 RUN dotnet build "aks-webapp.csproj" -c Release -o /app/build
