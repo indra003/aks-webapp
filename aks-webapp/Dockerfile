@@ -5,9 +5,10 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /src
-COPY ["aks-webapp/", "aks-webapp/"]
+#FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+#WORKDIR /src
+#COPY ["aks-webapp/", "aks-webapp/"]
+COPY *.csproj ./
 RUN dotnet restore "aks-webapp/aks-webapp.csproj"
 COPY . .
 WORKDIR "/src/aks-webapp"
