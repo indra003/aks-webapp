@@ -7,6 +7,9 @@ WORKDIR /app
 # Copy csproj and restore as distinct layers
 COPY *.csproj ./
 RUN dotnet restore "aks-webapp/aks-webapp.csproj"
+COPY . .
+WORKDIR "/src/aks-webapp"
+RUN dotnet build "aks-webapp.csproj" -c Release -o /app/build
 
 # Copy everything else and build
 COPY . ./
