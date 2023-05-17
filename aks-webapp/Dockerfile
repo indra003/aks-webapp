@@ -13,4 +13,4 @@ WORKDIR /publish
 COPY --from=build-env /publish .
 EXPOSE 80
 ENTRYPOINT ["dotnet", "aks-webapp.dll"]
-####
+#####
